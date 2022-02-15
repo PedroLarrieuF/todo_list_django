@@ -1,12 +1,18 @@
 {%load static %}
-
+{%if request.user.is_authenticated %}
+    <p1>Seja muito bem vindo, {{request.user}} </p1>
+    <a href = ''>Sair</a>
+{%else%}
+<a href= ''>Entrar</a>
+{% endif %}
 <h1> Ola </h1>
 
 <table>
-    <tr>
-        <th>Tarefas para serem entregues! </th>
-    </tr>
+    
     {%for Tasks in object_list%}    
+    <tr>
+        <th>Há para serem finalizadas!</th>
+    </tr>
 
     <tr>
         <td>

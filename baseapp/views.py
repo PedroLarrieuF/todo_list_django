@@ -12,6 +12,8 @@ class TasklistView(ListView):
 
 
 
+
+
 class Details(DetailView):
     model  = Tasks
     context_object_name = 'Details of Task'
