@@ -1,0 +1,30 @@
+{%load static %}
+
+<h1> Ola </h1>
+
+<table>
+    <tr>
+        <th>Tarefas para serem entregues! </th>
+    </tr>
+    {%for Tasks in object_list%}    
+
+    <tr>
+        <td>
+            {{Tasks.Title}}
+        </td>
+        <td>
+            <a href = '{% url 'tasks_detail' Tasks.id %}'> Visualizar tarefa </a>
+            <a href = '{% url 'tasks_edit' Tasks.id %}'> Editar </a>
+            <a href = '{% url 'tasks_delete' Tasks.id %}'> Deletar </a>
+           
+        </td>
+    </tr>
+    {% empty  %}
+    <h3> Não há tarefas </h3>
+    {% endfor %}
+   
+</table>
+
+<p1>
+    <a href = '{% url 'tasks_form'%}'>Criar nova tarefa</a>
+</p1>
