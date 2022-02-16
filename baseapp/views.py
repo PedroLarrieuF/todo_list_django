@@ -1,17 +1,15 @@
-from dataclasses import field
 from django.views.generic.list import ListView 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy, reverse
+from django.contrib.auth.views import LoginView
+from django.urls import reverse
 from .models import Tasks
 from .urls import *
+
 
 class TasklistView(ListView):
     model = Tasks
     context_object_name = 'Tasks'
-
-
-
 
 
 class Details(DetailView):
@@ -44,4 +42,10 @@ class TasksDelete(DeleteView):
     fields = '__all__'
 
 
-    
+class loginlogout(LoginView):
+    template_name = 'baseapp/login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse('tasks_list')

@@ -1,9 +1,9 @@
 {%load static %}
 {%if request.user.is_authenticated %}
     <p1>Seja muito bem vindo, {{request.user}} </p1>
-    <a href = ''>Sair</a>
+    <a href = '{% url 'logoutFunc' %}'>Sair</a>
 {%else%}
-<a href= ''>Entrar</a>
+<a href= '{% url 'loginFunc' %}'>Entrar</a>
 {% endif %}
 <h1> Ola </h1>
 
