@@ -13,3 +13,10 @@ HTML ready to receive CSS and bootstrap
 GIT repository ready
 Database already calling primary keys of Tasks and Users
 User admin can create, edit, delete and complete tasks of other users
+#####################################################################
+
+Realase Date - 16/02 - Version 1.0 - BETA
+Login and logout functionality based on registered users via super admin.
+Pages are restricted based on login.
+
+######################################################################
