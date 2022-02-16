@@ -20,3 +20,8 @@ Login and logout functionality based on registered users via super admin.
 Pages are restricted based on login.
 
 ######################################################################
+
+BUGFIXES DATE - 16/02 - VERSION 1.0 - BETA
+Users were able to access tasks even when logged out. With this correction, 
+the application requires the user to enter his login and password.
+########################################################################
