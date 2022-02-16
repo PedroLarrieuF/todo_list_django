@@ -2,12 +2,13 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from .models import Tasks
 from .urls import *
 
 
-class TasklistView(ListView):
+class TasklistView(LoginRequiredMixin,ListView):
     model = Tasks
     context_object_name = 'Tasks'
 
@@ -49,3 +50,5 @@ class loginlogout(LoginView):
 
     def get_success_url(self):
         return reverse('tasks_list')
+
+
