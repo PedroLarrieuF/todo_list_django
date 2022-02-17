@@ -12,6 +12,16 @@ class TasklistView(LoginRequiredMixin,ListView):
     model = Tasks
     context_object_name = 'Tasks'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['Tasks'] = context['Tasks'].filter(User = self.request.user)
+        context['Count'] = context['Tasks'].filter(task_done = False).count()
+        context['DoneTasks'] = context['Tasks'].filter(task_done = True).count()
+
+
+        return context
+
 
 class Details(LoginRequiredMixin,DetailView):
     model  = Tasks
@@ -50,5 +60,4 @@ class loginlogout (LoginView):
 
     def get_success_url(self):
         return reverse('tasks_list')
-
 

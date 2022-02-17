@@ -5,18 +5,21 @@
 {%else%}
 <a href= '{% url 'loginFunc' %}'>Entrar</a>
 {% endif %}
-<h1> Ola </h1>
+
+
+<h1> Ola {{request.user}}, você concluiu {{DoneTasks}} tarefas! </h1>
 
 <table>
-    
-    {%for Tasks in object_list%}    
     <tr>
-        <th>Há para serem finalizadas!</th>
+        <th>Há {{Count}} para serem finalizadas!  </th>
     </tr>
+    
+    {%for Tasks in Tasks%}    
+   
 
     <tr>
         <td>
-            {{Tasks.Title}}
+            {{Tasks}}
         </td>
         <td>
             <a href = '{% url 'tasks_detail' Tasks.id %}'> Visualizar tarefa </a>
