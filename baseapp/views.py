@@ -1,3 +1,4 @@
+from select import select
 from django.views.generic.list import ListView 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -35,7 +36,11 @@ class Taskcreatingviews(LoginRequiredMixin,CreateView):
         return reverse('tasks_list')
 
     model = Tasks
-    fields = '__all__'
+    fields = 'Title', 'description', 'task_done'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super (Taskcreatingviews, self).form_valid(form)
 
 
 class TasksUp(LoginRequiredMixin,UpdateView):
