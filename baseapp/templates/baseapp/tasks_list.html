@@ -1,39 +1,16 @@
+{% extends 'baseapp/mainstyle.html' %}
+{% block content%}
 {%load static %}
 {%if request.user.is_authenticated %}
-    <p1>Seja muito bem vindo, {{request.user}} </p1>
-    <a href = '{% url 'logoutFunc' %}'>Sair</a>
+    <p1>Welcome, {{request.user}}!   </p1>
+    <a href = '{% url 'logoutFunc' %}'>Logout</a>
 {%else%}
-<a href= '{% url 'loginFunc' %}'>Entrar</a>
+<a href= '{% url 'loginFunc' %}'>Login</a>
 {% endif %}
 
 
-<h1> Ola {{request.user}}, você concluiu {{DoneTasks}} tarefas! </h1>
-
-<table>
-    <tr>
-        <th>Há {{Count}} para serem finalizadas!  </th>
-    </tr>
-    
-    {%for Tasks in Tasks%}    
-   
-
-    <tr>
-        <td>
-            {{Tasks}}
-        </td>
-        <td>
-            <a href = '{% url 'tasks_detail' Tasks.id %}'> Visualizar tarefa </a>
-            <a href = '{% url 'tasks_edit' Tasks.id %}'> Editar </a>
-            <a href = '{% url 'tasks_delete' Tasks.id %}'> Deletar </a>
-           
-        </td>
-    </tr>
-    {% empty  %}
-    <h3> Não há tarefas </h3>
-    {% endfor %}
-   
-</table>
-
+<h1> Hi {{request.user}}, you finished {{Donetasks}} tasks! </h1>
+<th>There is {{Count}} tasks to complete!  </th>
 
 <form method = "GET"> Search by task title
     <input type = 'text' name = 'search-area'>
@@ -41,11 +18,34 @@
 </form>
 
 
-<form method = "GET"> Search by task id
-    <input type = 'text' name = 'search-area-id'>
-    <input type = 'submit' value = 'search'>
-</form>
+<table>
+    
+    {%for Tasks in Tasks%}    
 
-<p1>
-    <a href = '{% url 'tasks_form'%}'>Criar nova tarefa</a>
-</p1>
+    <tr>
+        <td>
+            {{Tasks}}
+        </td>
+        <td>
+            <a href = '{% url 'tasks_detail' Tasks.id %}'>
+                <i class="fa-solid fa-eye"></i>
+            </a>
+
+            <a href = '{% url 'tasks_edit' Tasks.id %}'>  
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a href = '{% url 'tasks_delete' Tasks.id %}'>
+                <i class="fa-solid fa-trash-can"></i>
+            </a>
+           
+        </td>
+    </tr>
+    {% empty  %}
+    <h3> There are no tasks </h3>
+    {% endfor %}
+    <a href = '{% url 'tasks_form'%}'>
+        <i class="fa-solid fa-plus">   New Task</i>
+    </a>
+   
+</table>
+{% endblock content %}

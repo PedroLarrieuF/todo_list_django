@@ -1,3 +1,6 @@
+{% extends 'baseapp/mainstyle.html' %}
+{% block content%}
+
 <h1> Register </h1>
 
 <form method = "POST">
@@ -10,3 +13,4 @@
 
 <p1> <a href = "{% url 'loginFunc' %}"> Already have an account?  </a></p1>
 
+{% endblock content %}

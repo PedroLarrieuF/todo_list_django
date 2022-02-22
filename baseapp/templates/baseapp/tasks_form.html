@@ -1,3 +1,5 @@
+{% extends 'baseapp/mainstyle.html' %}
+{% block content%}
 <h3>
     Crie sua tarefa
 </h3>
@@ -5,5 +7,10 @@
 <form method = "POST" action = "">
     {% csrf_token %}
     {{form.as_p}}
-    <input type = "Submit" value = "Submit" />
+    
+    <input type = "Submit" value = "Submit">
+    <a href = '{% url 'tasks_list'  %}'> 
+        <i class="fa-solid fa-backward"> Back </i>
+    </a>
 </form>
+{% endblock content %}
