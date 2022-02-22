@@ -11,5 +11,6 @@ urlpatterns = [
     path ('edit/<int:pk>', views.TasksUp.as_view(), name = 'tasks_edit'),
     path ('delete/<int:pk>', views.TasksDelete.as_view(), name = 'tasks_delete'),
     path ('login', views.loginlogout.as_view(), name  = 'loginFunc'),
-    path ('logout', LogoutView.as_view(next_page = 'loginFunc'), name  = 'logoutFunc')
+    path ('logout', LogoutView.as_view(next_page = 'loginFunc'), name  = 'logoutFunc'),
+    path ('createuser', views.RegisterUser.as_view(), name = 'RegisterPage')
 ]
