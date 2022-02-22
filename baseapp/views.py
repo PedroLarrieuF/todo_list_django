@@ -28,7 +28,7 @@ class TasklistView(LoginRequiredMixin,ListView):
 
 class Details(LoginRequiredMixin,DetailView):
     model  = Tasks
-    context_object_name = 'Details of Task'
+    context_object_name = 'task'
     template_name = 'baseapp/tasks_detail.html'
 
 
@@ -38,11 +38,8 @@ class Taskcreatingviews(LoginRequiredMixin,CreateView):
         return reverse('tasks_list')
 
     model = Tasks
-    fields = 'Title', 'description', 'task_done'
+    fields = '__all__'
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super (Taskcreatingviews, self).form_valid(form)
 
 
 class TasksUp(LoginRequiredMixin,UpdateView):
@@ -72,6 +69,7 @@ class RegisterUser(FormView):
     template_name = 'baseapp/createuser.html'
     form_class = UserCreationForm
     redirect_authenticated_user = True
+
 
     def get_success_url(self):
         return reverse('tasks_list')
