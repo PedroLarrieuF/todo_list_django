@@ -1,4 +1,3 @@
-from select import select
 from django.views.generic.list import ListView 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -20,11 +19,15 @@ class TasklistView(LoginRequiredMixin,ListView):
 
         context['Tasks'] = context['Tasks'].filter(User = self.request.user)
         context['Count'] = context['Tasks'].filter(task_done = False).count()
-        context['DoneTasks'] = context['Tasks'].filter(task_done = True).count()
+        context['Donetasks'] = context ['Tasks'].filter(task_done = True).count()
 
+        search_type = self.request.GET.get('search-area') or ''
+    
 
+        if search_type:
+            context['Tasks'] = context ['Tasks'].filter(Title = search_type)
+        
         return context
-
 
 class Details(LoginRequiredMixin,DetailView):
     model  = Tasks

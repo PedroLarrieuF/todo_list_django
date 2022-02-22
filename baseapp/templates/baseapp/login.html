@@ -1,6 +1,8 @@
+{% extends 'baseapp/mainstyle.html' %}
+{% block content%}
 <h1>Login </h1>
 
-
+<p2> The best way to create tasks using django.</p2>
 
 <form method =  "POST">
     {% csrf_token %}
@@ -9,3 +11,5 @@
 </form> 
 
 <p1> <a href = "{% url 'RegisterPage' %}">Don't have an account? Create now!  </a></p1>
+
+{% endblock content %}
