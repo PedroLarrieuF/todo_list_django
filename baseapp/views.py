@@ -22,7 +22,17 @@ class TasklistView(LoginRequiredMixin,ListView):
         context['Count'] = context['Tasks'].filter(task_done = False).count()
         context['DoneTasks'] = context['Tasks'].filter(task_done = True).count()
 
+        search_type = self.request.GET.get('search-area') or ''
+        search_type_id = self.request.GET.get('search-area-id') or ''
+        search_type_descr = self.request.GET.get('search-area-id') or ''
 
+
+        if search_type:
+            context['Tasks'] = context ['Tasks'].filter(Title = search_type)
+
+        if search_type_id:
+            context['Tasks'] = context ['Tasks'].filter(id = search_type_id)
+        
         return context
 
 
